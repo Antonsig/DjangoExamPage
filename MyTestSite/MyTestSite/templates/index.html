@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<h1>MyExam Page</h1>
+
+
+<ul>
+	{% for exam in all_exams %}
+	<li><a href="/exam/{{exam.id}}">{{exam.name}}</a></li>
+	{% endfor %}
+</ul>
+
+</html>
