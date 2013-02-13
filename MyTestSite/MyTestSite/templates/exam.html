@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-    <h1>Prof</h1>
-    <table>
-    <thead>{{exams.name}}</thead>
-    <th>Numer</th>
-    <th>Spurning</th>    
-        {%for q in questions%}        
-        <tr>
-            <td>{{q.id}}</td>
-            <td>{{q.question}}</td>
-        </tr>
-        {%endfor%}
-    </table>
-</body>
+    <head>
+    </head>
+    <body>
+        <header>
+            <h1>Prof</h1>
+        </header>
+        <table>
+        <thead>{{exams.name}}</thead>
+        <th>Numer</th>
+        <th>Spurning</th>    
+            {%for q in questions%}        
+            <tr>
+                <td>{{q.id}}</td>
+                <td>{{q.question}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+    </body>
 </html>
