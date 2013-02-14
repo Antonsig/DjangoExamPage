@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-</body>
-<h1>MyExam Page</h1>
+    <head>
+    </head>
+    <body>
+        <header>
+            <h1>MyExam Page</h1>
+        </header>
 
-
-<ul>
-	{% for exam in all_exams %}
-	<li><a href="/exam/{{exam.id}}">{{exam.name}}</a></li>
-	{% endfor %}
-</ul>
-
+        <ul>
+            {% for exam in all_exams %}
+            <li><a href="/exam/{{exam.id}}">{{exam.name}}</a></li>
+            {% endfor %}
+        </ul>
+        <footer>
+            <p>Page footer</p>
+        </footer>
+    </body>
 </html>

@@ -11,9 +11,15 @@ class Exams(models.Model):
 class Questions(models.Model):
     exam = models.ForeignKey(Exams)
     question = models.CharField(max_length=256)
+    answerA = models.CharField(max_length=256)
+    answerB = models.CharField(max_length=256)
+    answerC = models.CharField(max_length=256)
+    answerD = models.CharField(max_length=256)
+    correct_answer = models.CharField(max_length=1)
 
 
 class Answers(models.Model):
     userID = models.IntegerField()
-    questionID = models.ForeignKey(Questions)
-    answer = models.CharField(max_length=254)
+    exam = models.ForeignKey(Exams)
+    questionID = models.IntegerField()
+    user_answer = models.CharField(max_length=1)
