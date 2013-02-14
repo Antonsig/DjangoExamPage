@@ -9,12 +9,35 @@
         <table>
         <thead>{{exams.name}}</thead>
         <th>Numer</th>
-        <th>Spurning</th>    
-            {%for q in questions%}        
+        <th>Spurning</th>
+
+            {%for q in questions%}    
+        <form>            
             <tr>
                 <td>{{q.id}}</td>
                 <td>{{q.question}}</td>
             </tr>
+            <tr>
+                <td></td>
+                <td>{{q.answerA}}</td>
+                <td><input type="radio" name="val" value="A"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{{q.answerB}}</td>
+                <td><input type="radio" name="val" value="B"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{{q.answerC}}</td>
+                <td><input type="radio" name="val" value="C"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{{q.answerD}}</td>
+                <td><input type="radio" name="val" value="D"></td>
+            </tr>
+           </form> 
             {%endfor%}
         </table>
     </body>
