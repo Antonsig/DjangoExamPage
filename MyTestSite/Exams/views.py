@@ -29,3 +29,5 @@ def questions(request):
 def about():
     abouttext = "<p>We are the best of the best of the best</p><p>Anton Sigurdsson</p><p>Sigurdur Jonsson</p>"
     return render_to_response("about.html", abouttext)
+    
+ 
