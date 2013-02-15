@@ -4,42 +4,49 @@
     </head>
     <body>
         <header>
-            <h1>Prof</h1>
+            <h1>Pr&oacute;f</h1>
         </header>
+        <p>Blessa&eth;ur {{user.first_name}}</p>
         <table>
         <thead>{{exams.name}}</thead>
-        <th>Numer</th>
+        <th>N&uacute;mer</th>
         <th>Spurning</th>
 
             {%for q in questions%}    
-        <form>            
+        <form action="/answers/{{q.id}}/" method="post" accept-charset="utf-8">            
             <tr>
-                <td>{{q.id}}</td>
-                <td>{{q.question}}</td>
+                <th>{{q.id}}</th>
+                <th>{{q.question}}</th>
+                <th></th>
             </tr>
             <tr>
                 <td></td>
-                <td>{{q.answerA}}</td>
+                <td>A) {{q.answerA}}</td>
                 <td><input type="radio" name="val" value="A"></td>
             </tr>
             <tr>
                 <td></td>
-                <td>{{q.answerB}}</td>
+                <td>B) {{q.answerB}}</td>
                 <td><input type="radio" name="val" value="B"></td>
             </tr>
             <tr>
                 <td></td>
-                <td>{{q.answerC}}</td>
+                <td>C) {{q.answerC}}</td>
                 <td><input type="radio" name="val" value="C"></td>
             </tr>
             <tr>
                 <td></td>
-                <td>{{q.answerD}}</td>
+                <td>D) {{q.answerD}}</td>
                 <td><input type="radio" name="val" value="D"></td>
             </tr>
-           </form> 
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="submit" value="Svara"></td>
+            </tr>
+           </form>
             {%endfor%}
         </table>
-        <input type="submit" action="" value="Ljuka Profi">
+        
     </body>
 </html>

@@ -16,8 +16,9 @@ def index(request):
 def exam_details(request, exam_id):
     e = Exams.objects.get(pk=exam_id)
     q = Questions.objects.filter(exam=exam_id)
+    u = request.user
     
-    model = {"exams" : e, "questions" : q}
+    model = {"exams" : e, "questions" : q, "user" : u}
     return render_to_response("exam.html", model)
     
 def questions(request):
@@ -29,6 +30,7 @@ def questions(request):
     return render_to_response("index.html", mod)
     return render_to_response("index.html", model)
 
+<<<<<<< HEAD
 def register(request):
     if request.method == 'GET':
         return render_to_response("register.html")
@@ -44,3 +46,22 @@ def register(request):
 def logout_view(request):
     logout(request)
     return redirect("index")
+=======
+def about():
+    abouttext = "<p>We are the best of the best of the best</p><p>Anton Sigurdsson</p><p>Sigurdur Jonsson</p>"
+    return render_to_response("about.html", abouttext)
+
+def answers(request, offset):
+   if request.method == 'POST':
+        u = request.POST.get('user.id')
+        e = request.POST.get('exams.id')
+        q = request.POST.get('questions.id')
+        a = request.POST.get('val')
+        answ_obj = Answer(userID=u, exam=e, qustionID=q,user_answer = a)
+        answ_obj.save()
+
+
+
+    
+ 
+>>>>>>> ea7a392429a32940ecab6805c6c08b75bbfbaaf6
