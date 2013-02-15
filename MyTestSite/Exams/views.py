@@ -13,8 +13,9 @@ def index(request):
 def exam_details(request, exam_id):
     e = Exams.objects.get(pk=exam_id)
     q = Questions.objects.filter(exam=exam_id)
+    u = request.user
     
-    model = {"exams" : e, "questions" : q}
+    model = {"exams" : e, "questions" : q, "user" : u}
     return render_to_response("exam.html", model)
     
 def questions(request):
@@ -29,5 +30,17 @@ def questions(request):
 def about():
     abouttext = "<p>We are the best of the best of the best</p><p>Anton Sigurdsson</p><p>Sigurdur Jonsson</p>"
     return render_to_response("about.html", abouttext)
+
+def answers(request, offset):
+   if request.method == 'POST':
+        u = request.POST.get('user.id')
+        e = request.POST.get('exams.id')
+        q = request.POST.get('questions.id')
+        a = request.POST.get('val')
+        answ_obj = Answer(userID=u, exam=e, qustionID=q,user_answer = a)
+        answ_obj.save()
+
+
+
     
  
