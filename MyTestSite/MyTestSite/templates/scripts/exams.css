@@ -1,0 +1,27 @@
+h1
+{
+    margin-bottom: 5px;
+}
+
+ul
+{
+    list-style: none;
+}
+
+.menu
+{
+    margin: 20px;
+}
+
+#menuitem
+{
+    text-decoration: none;
+	float: left;
+	margin-right: 10px;
+}
+
+.top_exams
+{
+    margin: 20px;
+    position: absolute;
+}
