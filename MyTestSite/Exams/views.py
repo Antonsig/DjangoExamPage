@@ -46,8 +46,7 @@ def register(request):
         user.last_name = request.POST["lastname"]
         user.is_staff = False
         user.save()
-        HttpResponseRedirect('index')
-        #return redirect("index")
+        return redirect("index")
 
 def logout_view(request):
     logout(request)
