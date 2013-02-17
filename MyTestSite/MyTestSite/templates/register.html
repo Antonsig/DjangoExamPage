@@ -1,28 +1,38 @@
 <!DOCTYPE html>
-<head></head>
-<body>
-<h1>Nyskraning</h1>
-<form action="/register" method="post" accept-charset="utf-8">
-<ul class="register">
-    <li>
-        <input type="text" id="username" name="username" placeholder="Notendanafn"/ required>
-    </li>
-    <li>
-        <input type="text" id="firstname" name="firstname" placeholder="Nafn"/
-    </li>
-    <li>
-        <input type="text" id="lastname" name="lastname" placeholder="Fodurnafn"/
-    </li>
-    <li>
-        <input type="email" id="email" name="email" placeholder="Email" required/>
-    </li>
-    <li>
-        <input type="password" id="password" name="password" placeholder="Password" required/>
-    </li>
-</ul>    
-<input type="submit" value="Skra notanda" onclick="alert('Skraning mottekin')"/>
+<html>
+    <head>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static "scripts/exams.css" %}"/>
+    </head>
+    <body>
+        <h1>Nyskraning</h1>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="/">Heim<a>
+            </li>
+        </ul>
+    </div>
+        <form action="/register" method="post" accept-charset="utf-8">
+            <ul class="register">
+                <li>
+                    <input type="text" id="username" name="username" placeholder="Notendanafn"/ required>
+                </li>
+                <li>
+                    <input type="text" id="firstname" name="firstname" placeholder="Nafn"/
+                </li>
+                <li>
+                    <input type="text" id="lastname" name="lastname" placeholder="Fodurnafn"/
+                </li>
+                <li>
+                    <input type="email" id="email" name="email" placeholder="Email" required/>
+                </li>
+                <li>
+                    <input type="password" id="password" name="password" placeholder="Password" required/>
+                </li>
+            </ul>    
+        <input type="submit" value="Skra notanda" onclick="alert('Skraning mottekin')"/>
 
-
-</form>
-</body>
+        </form>
+    </body>
 </html>

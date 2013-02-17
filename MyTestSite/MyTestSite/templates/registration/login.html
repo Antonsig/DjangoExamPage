@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "scripts/exams.css" %}"/>
 </head>
 <body>
+
+        <ul>
+            <li>
+                <a href="/">Heim<a>
+            </li>
+            <li>
+                <a href="register.html" name="NySkraning">Nyskraning<a/>            
+            </li>
+        </ul>
+
 {% block content %}
 
 {% if form.errors %}
@@ -24,7 +36,7 @@
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
-<a href="register.html" name="NySkraning">Nyskraning<a/>
+
 {% endblock %}
 </body>
 </html>

@@ -8,12 +8,17 @@ from django.contrib.auth import logout
 
 def index(request):
     all_exams = Exams.objects.all()
+    currentuser = request.user
 
-    if request.user.is_authenticated():
-        u = request.user
-        mod = {"all_exams" : all_exams, "u" : u, "loginout" : '/logout', "l" : "LogOut"}          
+    if currentuser.is_superuser:
+        mod = {"all_exams" : all_exams, "u" : currentuser, "loginout" : '/logout', "l" : "LogOut", "hideNyrNotandi" : "display:none;"}
+        print ("superuser")        
+    elif currentuser.is_authenticated():
+        mod = {"all_exams" : all_exams, "u" : currentuser, "loginout" : '/logout', "l" : "LogOut", "hideNyttProf" : "display:none;", "hideNyrNotandi" : "display:none;"}    
+        print ("user")    
     else:
-        mod = {"all_exams" : all_exams, "u" : "Oskradur notandi",  "loginout" : 'accounts/login/', "l" : "Login"}
+        mod = {"all_exams" : all_exams, "u" : "Oskradur notandi",  "loginout" : 'accounts/login/', "l" : "Login", "hideNyttProf" : "display:none;"}
+        
     return render_to_response("index.html", mod)
         
 @login_required
@@ -66,3 +71,20 @@ def answers(request, offset):
         answ_obj.save()
 def home(request):
     return redirect("index")
+
+def createxam(request):
+    if request.method == 'GET':
+        return render_to_response("createxam.html", request)
+    else:
+        e_name = request.POST["profnafn"]
+        q_num = request.POST["f_spurn"]
+        n_date = request.POST["p_byr"]
+        o_date = request.POST["p_byr"]
+        c_date = request.POST["p_lok"]
+        #n_date = "2013-02-17"
+        #o_date = "2013-02-17"
+        #c_date = "2013-02-17"
+        new_exam = Exams(name=e_name, date_created=n_date, date_opened=o_date, date_closed=c_date )
+        new_exam.save()
+        model = {"e_name" : e_name, "e_num" : new_exam.id }
+        return render_to_response("createxamquestions.html", model)

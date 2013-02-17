@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static "scripts/exams.css" %}"/>
     </head>
     <body>
         <header>
             <h1>Pr&oacute;f</h1>
         </header>
+    <ul>
+        <li>
+            <a href="/">Heim<a>
+        </li>
+    </ul>
         <p>Blessa&eth;ur {{user.first_name}}</p>
         <table>
         <thead>{{exams.name}}</thead>
