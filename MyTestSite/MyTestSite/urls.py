@@ -7,9 +7,9 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'Exams.views.index', name='index'),
-    # url(r'about', 'Exams.views.about', name='about'),
+    url(r'^about/$', 'Exams.views.about', name='about'),
     url(r'exam/(\d+)/$', 'Exams.views.exam_details', name='exam'),
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^accounts/logout$', 'django.contrib.auth.views.logout'),
     url(r'^accounts/profile/$', 'Exams.views.home'),
     url(r'results', 'Exams.views.results', name='results'),

@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<head>
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static "scripts/exams.css" %}"/>
-</head>
-<body>
-
-        <ul>
-            <li>
-                <a href="/">Heim<a>
-            </li>
-            <li>
-                <a href="register.html" name="NySkraning">Nyskraning<a/>            
-            </li>
-        </ul>
+{% extends "index.html" %}
 
 {% block content %}
 
@@ -21,9 +7,9 @@
 {% endif %}
 
 <form method="post" action="{% url django.contrib.auth.views.login %}">
-{% csrf_token %}
 <table>
 <tr>
+{% csrf_token %}
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
 </tr>
@@ -38,5 +24,3 @@
 
 
 {% endblock %}
-</body>
-</html>

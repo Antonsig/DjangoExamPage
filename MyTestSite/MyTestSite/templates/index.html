@@ -3,38 +3,51 @@
     <head>
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static "scripts/exams.css" %}"/>
-    <title>Exam page</title>
+    <title>M&eacute;rErSpurn.is</title>
     </head>
     <body>
-        <header>
-            <h1>Velkomin(n) {{u}}</h1>
-        </header>
-        
+       <img src="{% static "images/header.png" %}" alt="MerErSpurn logoid">
     <div class="menu">
-        <ul>
+        <ul class="horiz">
             <li>
-                <a id="menuitem" href="{{ loginout }}">{{ l }}</a>
+                <a href="{% url index %}">Heim</a>
             </li>
             <li>
-                <a id="menuitem" href="accounts/login/register.html"><span style="{{hideNyrNotandi}}">Nyskraning</span></a>
+                <a href="/createxam">Nytt prof</span></a>
             </li>
             <li>
-                <a id="menuitem"  href="/createxam"><span style="{{hideNyttProf}}">Nytt prof</span></a>
+                <a href="accounts/login/results.html">Pr&oacute;fni&eth;urst&ouml;&eth;ur</a>
             </li>
             <li>
-                <a id="menuitem" href="accounts/login/results.html">Pr&oacute;fni&eth;urst&ouml;&eth;ur</a>
+                <a href="{% url about %}">Um okkur</a>
             </li>
+                {% if u.is_authenticated %}  
+            <li>
+                <a href="{% url login %}">Velkominn {{u}}</a>
+            </li>
+            <li>
+                <a href="{{ loginout }}">Skra ut</a>
+            </li>
+                {% else %}                
+            <li>
+                <a href="{% url login %}">Innskraning</a>
+            </li> 
+                {% endif %}
         </ul>
     </div>
+        
+    <br/>
+    {% block content %}
     <div class="top_exams">
+    <h3>Nyjustu profin</h3>
         <ul>
             {% for exam in all_exams %}
             <li><a href="/exam/{{exam.id}}">{{exam.name}}</a></li>
             {% endfor %}
         </ul>
      <div>
-        <footer>
-            <p>Page footer</p>
-        </footer>
+     
+     {% endblock %}
+        <footer>Vor 2013 - Nemendur Tolvunarfraedi - Haskolinn i Reykjavik</footer>
     </body>
 </html>

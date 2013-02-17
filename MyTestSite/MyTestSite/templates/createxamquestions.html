@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static "scripts/exams.css" %}"/>
-</head>
-<body>
-            <a href="/">Heim<a>
-    <h1>Utbuid spurningar her</h1>
-    <h2>Nafn profs er: {{e_name}}</h2>
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h3>Utbuid spurningar her</h3>
+    <h3>Nafn profs er: {{e_name}}</h3>
  <form action="/createxamquestion/" method="post" accept-charset="utf-8">
     <table>
         <thead> Spurning <input type="text" size="100" id="question" name="question" placeholder="Spurning"/ required><thead>
@@ -34,8 +30,6 @@
             </tr>
     </table>
     <input type="submit" value="Vista spurningu!" onclick="alert('Spurning vistud!')"/>
-    <input type="button" value="Fara ur profi!" onclick="alert('Prof og spurningar vistadar!')"/>
  </form>
-
-</body>
-</html>
+ <a href="{% url index %}">Haetta</a>
+{% endblock %}

@@ -2,7 +2,7 @@
 from Exams.models import *
 from django.shortcuts import *
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import *
 from datetime import datetime
 from django.contrib.auth import logout
 from decimal import Decimal
@@ -10,17 +10,9 @@ from decimal import Decimal
 def index(request):
     all_exams = Exams.objects.all()
     currentuser = request.user
+    mod = {"all_exams" : all_exams, "u" : currentuser, "loginout" : '/logout', "l" : "LogOut"}    
+    return render_to_response("index.html", mod)        
 
-    if currentuser.is_superuser:
-        mod = {"all_exams" : all_exams, "u" : currentuser, "loginout" : '/logout', "l" : "LogOut", "hideNyrNotandi" : "display:none;"}
-        print ("superuser")        
-    elif currentuser.is_authenticated():
-        mod = {"all_exams" : all_exams, "u" : currentuser, "loginout" : '/logout', "l" : "LogOut", "hideNyttProf" : "display:none;", "hideNyrNotandi" : "display:none;"}    
-        print ("user")    
-    else:
-        mod = {"all_exams" : all_exams, "u" : "Oskradur notandi",  "loginout" : 'accounts/login/', "l" : "Login", "hideNyttProf" : "display:none;"}
-        
-    return render_to_response("index.html", mod)
         
 @login_required
 def exam_details(request, exam_id):
@@ -58,9 +50,11 @@ def logout_view(request):
     logout(request)
     return redirect("index")
 
-def about():
-    abouttext = "<p>We are the best of the best of the best</p><p>Anton Sigurdsson</p><p>Sigurdur Jonsson</p>"
-    return render_to_response("about.html", abouttext)
+def about(request):
+    all_exams = Exams.objects.all()
+    currentuser = request.user
+    mod = {"all_exams" : all_exams, "u" : currentuser, "loginout" : '/logout', "l" : "LogOut"}  
+    return render_to_response("about.html", mod)
         
 def useranswers(request):
     if request.method == 'POST':

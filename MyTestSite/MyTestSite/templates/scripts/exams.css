@@ -1,27 +1,73 @@
-h1
+body
 {
-    margin-bottom: 5px;
+    border: 1px solid black;
+    margin: 6px 30px 6px 30px;
+    position: fixed;
+    width: 800px;
+    height: 1000px;
+}
+
+h3
+{
+    margin: 20px;
 }
 
 ul
 {
+    margin-top: 0px;
     list-style: none;
 }
 
-.menu
+footer
 {
-    margin: 20px;
+    text-align: center;
+    background: #e1e1e1;
+    position: fixed;
+    bottom: 30px;
+    width: 800px;
 }
-
-#menuitem
+.menu a
 {
     text-decoration: none;
-	float: left;
-	margin-right: 10px;
 }
 
-.top_exams
+.menu a:hover
 {
-    margin: 20px;
-    position: absolute;
+    text-decoration: underline;
+}
+
+.menu
+ {
+    height: 30px;
+    background: #666666;
+    width: auto;
+ }
+ 
+ .menu ul.horiz
+ {
+    margin-top: 0px;
+    list-style-type: none;
+    width: auto;
+    heigth: 30px;
+ }
+.menu ul.horiz li
+{
+	float: left;
+	height: 30px;
+}
+
+.menu ul.horiz li a
+{
+    float: left;
+    height: 30px;
+    line-height: 27px;
+    color: #ffffff;
+    text-align: center;
+    padding: 0 20px 0 20px;
+}
+
+.menu ul.horiz li a:hover
+{
+    background: #e1e1e1;
+    color: #666666;
 }

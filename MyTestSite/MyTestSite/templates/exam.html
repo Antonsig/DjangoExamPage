@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
+{% extends 'index.html' %}
+
+{% block content %}
         <header>
-            <h1>Pr&oacute;f</h1>
+            <h3>Pr&oacute;f</h3>
         </header>
-        <p>Blessa&eth;ur {{user.first_name}}</p>
         <table>
         <thead>{{exams.name}}</thead>
         <th>N&uacute;mer</th>
@@ -48,6 +45,4 @@
            </form>
             {%endfor%}
         </table>
-        
-    </body>
-</html>
+{% endblock %}
