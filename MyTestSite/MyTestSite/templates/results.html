@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<h1>Pr&oacute;fni&eth;urst&ouml;&eth;ur</h1>
+	<table class="resulttable">
+		<tr>
+			<th>Próf</th><th>Spurning</th><th>Þitt svar</th><th>Rétt svar</th><th>Stig</th>
+		</tr>
+	{% for exam in exams %}
+		{% for quest in questions %}
+			{% for result in resul %}
+				{% if exam.id == result.exam_id and quest.id == result.questionID %}<li>{{exam.name}},{{quest.question}},{{result.user_answer}}</li>{% endif %}
+			{% endfor %}
+		{% endfor %}
+	{% endfor %}
+
+	</table>
+
+
+
+</body>
+
+{{abouttext}}
+</html>

@@ -8,34 +8,33 @@
             <a href="/">Heim<a>
     <h1>Utbuid spurningar her</h1>
     <h2>Nafn profs er: {{e_name}}</h2>
- <form action="/savequestions" method="post" accept-charset="utf-8">
+ <form action="/createxamquestion/" method="post" accept-charset="utf-8">
     <table>
         <thead> Spurning <input type="text" size="100" id="question" name="question" placeholder="Spurning"/ required><thead>
 
             <tr>
                 <td>Svar A</td>
-                <td><input type="text" size="100"id="answer" name="answer" placeholder="Svar A"/ required></td>
-                <td><input type="radio" name="val" value="A"></td>
+                <td><input type="text" size="100"id="answer" name="answerA" placeholder="Svar A"/ required><input type="hidden" name="prof_id"value="{{e_num}}"/><input type="hidden" name="prof_n"value="{{e_name}}"/></td>
+                <td><input type="radio" name="val" value="A" required></td>
             </tr>
             <tr>
                 <td>Svar B</td>
-                <td><input type="text" size="100" id="answer" name="answer" placeholder="Svar B"/ required></td>
-                <td><input type="radio" name="val" value="B"></td>
+                <td><input type="text" size="100" id="answer" name="answerB" placeholder="Svar B"/ required></td>
+                <td><input type="radio" name="val" value="B" required></td>
             </tr>
             <tr>
                 <td>Svar C</td>
-                <td><input type="text" size="100" id="answer" name="answer" placeholder="Svar C"/ required></td>
-                <td><input type="radio" name="val" value="C"></td>
+                <td><input type="text" size="100" id="answer" name="answerC" placeholder="Svar C"/ required></td>
+                <td><input type="radio" name="val" value="C" required></td>
             </tr>
             <tr>
                 <td>Svar D</td>
-                <td><input type="text" size="100" id="answer" name="answer" placeholder="Svar D"/ required></td>
-                <td><input type="radio" name="val" value="D"></td>
+                <td><input type="text" size="100" id="answer" name="answerD" placeholder="Svar D"/ required></td>
+                <td><input type="radio" name="val" value="D" required></td>
             </tr>
     </table>
-    <input type="submit" value="Vista spurningu og halda afram!" onclick="alert('Spurning vistud!')"/>
-    <input type="submit" value="Vista spurningu og haetta!" onclick="alert('Skraningum spurninga i prof er lokid!')"/>
-    <input type="button" value="Haetta vid spurningu!" onclick="alert('Spurning ekki vistud!')"/>
+    <input type="submit" value="Vista spurningu!" onclick="alert('Spurning vistud!')"/>
+    <input type="button" value="Fara ur profi!" onclick="alert('Prof og spurningar vistadar!')"/>
  </form>
 
 </body>

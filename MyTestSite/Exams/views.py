@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.contrib.auth import logout
+from decimal import Decimal
 
 def index(request):
     all_exams = Exams.objects.all()
@@ -60,15 +61,33 @@ def logout_view(request):
 def about():
     abouttext = "<p>We are the best of the best of the best</p><p>Anton Sigurdsson</p><p>Sigurdur Jonsson</p>"
     return render_to_response("about.html", abouttext)
-
-def answers(request, offset):
-   if request.method == 'POST':
-        u = request.POST.get('user.id')
-        e = request.POST.get('exams.id')
-        q = request.POST.get('questions.id')
-        a = request.POST.get('val')
-        answ_obj = Answer(userID=u, exam=e, qustionID=q,user_answer = a)
+        
+def useranswers(request):
+    if request.method == 'POST':
+        us = request.user
+        u = us.id
+        e = request.POST['eid']
+        q = request.POST['qid']
+        a = request.POST['val']
+        iq = int(q)
+        ie = int(e)
+        i = Decimal(u*100000) + Decimal(ie*100) + Decimal(iq)
+        answ_obj = Answers(i,u,e,q,a)
         answ_obj.save()
+        ex = Exams.objects.get(pk=e)
+        qu = Questions.objects.filter(exam=e)
+        model = {"exams" : ex, "questions" : qu, "user" : us}
+        return render_to_response("exam.html", model)
+        
+@login_required
+def results (request):
+    u = request.user.id
+    all_results = Answers.objects.filter(userID=u)
+    all_exams = Exams.objects.all()
+    all_questions = Questions.objects.all()
+    model = {"resul" : all_results, "exams" : all_exams, "questions" : all_questions}
+    return render_to_response("results.html",model)
+        
 def home(request):
     return redirect("index")
 
@@ -77,14 +96,25 @@ def createxam(request):
         return render_to_response("createxam.html", request)
     else:
         e_name = request.POST["profnafn"]
-        q_num = request.POST["f_spurn"]
-        n_date = request.POST["p_byr"]
+        n_date = "2013-02-17"
         o_date = request.POST["p_byr"]
         c_date = request.POST["p_lok"]
-        #n_date = "2013-02-17"
-        #o_date = "2013-02-17"
-        #c_date = "2013-02-17"
         new_exam = Exams(name=e_name, date_created=n_date, date_opened=o_date, date_closed=c_date )
         new_exam.save()
         model = {"e_name" : e_name, "e_num" : new_exam.id }
+        return render_to_response("createxamquestions.html", model)
+
+def createxamquestion(request):
+    if request.method == 'POST':
+        e_name = request.POST["prof_n"]
+        e = request.POST["prof_id"]
+        q = request.POST["question"]
+        aa = request.POST["answerA"]
+        ab = request.POST["answerB"]
+        ac = request.POST["answerC"]
+        ad = request.POST["answerD"]
+        a = request.POST['val']
+        quest_obj = Questions(exam_id=e, question=q, answerA=aa, answerB=ab, answerC=ac, answerD=ad, correct_answer=a)
+        quest_obj.save()
+        model = {"e_name" : e_name, "e_num" : e }
         return render_to_response("createxamquestions.html", model)

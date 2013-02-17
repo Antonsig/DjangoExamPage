@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% load staticfiles %}
-        <link rel="stylesheet" type="text/css" href="{% static "scripts/exams.css" %}"/>
     </head>
     <body>
         <header>
             <h1>Pr&oacute;f</h1>
         </header>
-    <ul>
-        <li>
-            <a href="/">Heim<a>
-        </li>
-    </ul>
         <p>Blessa&eth;ur {{user.first_name}}</p>
         <table>
         <thead>{{exams.name}}</thead>
@@ -20,14 +13,15 @@
         <th>Spurning</th>
 
             {%for q in questions%}    
-        <form action="/answers/{{q.id}}/" method="post" accept-charset="utf-8">            
+        <form action="/useranswers" method="post" accept-charset="utf-8">            
             <tr>
                 <th>{{q.id}}</th>
                 <th>{{q.question}}</th>
                 <th></th>
             </tr>
             <tr>
-                <td></td>
+                <td><input type="hidden" name="eid" value="{{exams.id}}">
+                <input type="hidden" name="qid" value="{{q.id}}"></td>
                 <td>A) {{q.answerA}}</td>
                 <td><input type="radio" name="val" value="A"></td>
             </tr>
